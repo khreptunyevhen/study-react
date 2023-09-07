@@ -1,3 +1,3 @@
 export default function Logo() {
-  return <h1>🌴 Far away 💼</h1>;
+  return <h1>🍌 My Grocery Checklist ✅</h1>;
 }
