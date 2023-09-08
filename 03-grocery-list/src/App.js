@@ -69,6 +69,7 @@ function App() {
       )}
       <PackingList
         items={items}
+        setItems={setItems}
         showAddNewItem={showAddNewItem}
         onShowAddNewItem={handleShowAddNewItem}
         onDeleteItem={handleDeleteItem}

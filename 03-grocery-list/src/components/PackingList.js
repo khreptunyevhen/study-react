@@ -4,6 +4,7 @@ import Item from "./Item";
 
 export default function PackingList({
   items,
+  setItems,
   showAddNewItem,
   onDeleteItem,
   onToggleItem,
@@ -56,6 +57,8 @@ export default function PackingList({
             onDeleteItem={onDeleteItem}
             onToggleItem={onToggleItem}
             item={item}
+            items={items}
+            setItems={setItems}
           />
         ))}
       </ul>

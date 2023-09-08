@@ -1,7 +1,26 @@
-export default function Item({ item, onDeleteItem, onToggleItem }) {
+import { useState } from "react";
+import EditForm from "./EditForm";
+
+export default function Item({
+  item,
+  items,
+  setItems,
+  onDeleteItem,
+  onToggleItem,
+}) {
+  const [showEdit, setShowEdit] = useState(false);
+
   const capitalizeDescription =
     item.description.at(0).toUpperCase() +
     item.description.toLowerCase().slice(1);
+
+  function handleShowEdit() {
+    setShowEdit(true);
+  }
+
+  function handleCloseEdit() {
+    setShowEdit(false);
+  }
 
   return (
     <li>
@@ -23,6 +42,16 @@ export default function Item({ item, onDeleteItem, onToggleItem }) {
         {item.quantity} {item.unit} {capitalizeDescription}
       </span>
       <button onClick={() => onDeleteItem(item.id)}>❌</button>
+      <button onClick={handleShowEdit}>🚫</button>
+      {showEdit && (
+        <EditForm
+          item={item}
+          items={items}
+          setItems={setItems}
+          onDeleteItem={onDeleteItem}
+          onCloseEdit={handleCloseEdit}
+        />
+      )}
     </li>
   );
 }
