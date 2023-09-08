@@ -16,7 +16,7 @@ export default function Item({ item, onDeleteItem, onToggleItem }) {
             : {}
         }
       >
-        {item.quantity} {item.description}
+        {item.quantity} {item.unit} {item.description}
       </span>
       <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>

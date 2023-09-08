@@ -1,8 +1,31 @@
 import { useState } from "react";
 
-export default function Form({ onAddItems }) {
+const units = [
+  "bag",
+  "bottle",
+  "box",
+  "cup",
+  "kg",
+  "g",
+  "ml",
+  "l",
+  "bunch",
+  "small",
+  "large",
+  "pack",
+  "jar",
+  "can",
+  "bag",
+  "lbs",
+  "amount",
+];
+
+const sortedUnits = units.sort();
+
+export default function Form({ onAddItems, errors }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [unit, setUnit] = useState(sortedUnits.at(0));
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -10,21 +33,30 @@ export default function Form({ onAddItems }) {
     if (!description) return;
 
     const newItem = {
-      description,
+      description: description.trim(),
       quantity,
+      unit,
       packed: false,
       id: Date.now(),
     };
 
     onAddItems(newItem);
 
+    setUnit(sortedUnits.at(0));
     setDescription("");
     setQuantity(1);
   }
 
   return (
     <form className="add-form" onSubmit={handleSubmit}>
-      <h3>What do you need for your 😍 trip?</h3>
+      <h3>What do you want to buy? 💰</h3>
+      {errors.exist && <p>{errors.exist}</p>}
+      <input
+        type="text"
+        placeholder="Item..."
+        value={description}
+        onChange={(event) => setDescription(event.target.value)}
+      />
       <select
         value={quantity}
         onChange={(event) => setQuantity(Number(event.target.value))}
@@ -37,12 +69,13 @@ export default function Form({ onAddItems }) {
           )
         )}
       </select>
-      <input
-        type="text"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
+      <select value={unit} onChange={(e) => setUnit(e.target.value)}>
+        {sortedUnits.map((unit, index) => (
+          <option key={`unit-${index}`} value={unit}>
+            {unit}
+          </option>
+        ))}
+      </select>
       <button>Add</button>
     </form>
   );

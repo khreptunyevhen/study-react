@@ -7,8 +7,25 @@ import Stats from "./components/Stats";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [errors, setErrors] = useState({});
+  const [showAddNewItem, setShowAddNewItem] = useState(false);
 
   function handleAddItem(item) {
+    if (
+      items.find(
+        (currItem) =>
+          currItem.description.toLowerCase() === item.description.toLowerCase()
+      )
+    ) {
+      setErrors((currErrors) => ({
+        ...currErrors,
+        exist: `${item.description.toLowerCase()} already exist! Please add another one!`,
+      }));
+      return;
+    } else {
+      setErrors({});
+    }
+
     setItems((items) => [...items, item]);
   }
 
@@ -32,12 +49,18 @@ function App() {
     if (confirmed) setItems([]);
   }
 
+  function handleShowAddNewItem() {
+    setShowAddNewItem(true);
+  }
+
   return (
     <div className="app">
       <Logo />
-      <Form onAddItems={handleAddItem} />
+      {showAddNewItem && <Form onAddItems={handleAddItem} errors={errors} />}
       <PackingList
         items={items}
+        showAddNewItem={showAddNewItem}
+        onShowAddNewItem={handleShowAddNewItem}
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
         onClearList={handleClearList}
