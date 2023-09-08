@@ -11,6 +11,10 @@ function App() {
   const [showAddNewItem, setShowAddNewItem] = useState(false);
 
   function handleAddItem(item) {
+    const capitalizeDescription =
+      item.description.at(0).toUpperCase() +
+      item.description.toLowerCase().slice(1);
+
     if (
       items.find(
         (currItem) =>
@@ -19,7 +23,7 @@ function App() {
     ) {
       setErrors((currErrors) => ({
         ...currErrors,
-        exist: `${item.description.toLowerCase()} already exist! Please add another one!`,
+        error: `${capitalizeDescription} already exist! Please add another one!`,
       }));
       return;
     } else {
@@ -56,7 +60,13 @@ function App() {
   return (
     <div className="app">
       <Logo />
-      {showAddNewItem && <Form onAddItems={handleAddItem} errors={errors} />}
+      {showAddNewItem && (
+        <Form
+          onAddItems={handleAddItem}
+          errors={errors}
+          setErrors={setErrors}
+        />
+      )}
       <PackingList
         items={items}
         showAddNewItem={showAddNewItem}

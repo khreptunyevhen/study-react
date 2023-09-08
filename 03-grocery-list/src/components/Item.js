@@ -1,4 +1,8 @@
 export default function Item({ item, onDeleteItem, onToggleItem }) {
+  const capitalizeDescription =
+    item.description.at(0).toUpperCase() +
+    item.description.toLowerCase().slice(1);
+
   return (
     <li>
       <input
@@ -16,7 +20,7 @@ export default function Item({ item, onDeleteItem, onToggleItem }) {
             : {}
         }
       >
-        {item.quantity} {item.unit} {item.description}
+        {item.quantity} {item.unit} {capitalizeDescription}
       </span>
       <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>

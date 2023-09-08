@@ -22,7 +22,7 @@ const units = [
 
 const sortedUnits = units.sort();
 
-export default function Form({ onAddItems, errors }) {
+export default function Form({ onAddItems, errors, setErrors }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [unit, setUnit] = useState(sortedUnits.at(0));
@@ -30,7 +30,15 @@ export default function Form({ onAddItems, errors }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!description) return;
+    if (!description) {
+      setErrors((currErrors) => ({
+        ...currErrors,
+        error: "Item cannot be empty!",
+      }));
+      return;
+    } else {
+      setErrors({});
+    }
 
     const newItem = {
       description: description.trim(),
@@ -50,7 +58,7 @@ export default function Form({ onAddItems, errors }) {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you want to buy? 💰</h3>
-      {errors.exist && <p>{errors.exist}</p>}
+      {errors.error && <p>{errors.error}</p>}
       <input
         type="text"
         placeholder="Item..."
