@@ -7,12 +7,15 @@ const EditForm = ({ item, setItems, onDeleteItem, onCloseEdit, units }) => {
   const [newQuantity, setNewQuantity] = useState(item.quantity);
   const [newUnit, setNewUnit] = useState(item.unit);
 
+  const capitalizeDescription =
+    newDescription.at(0).toUpperCase() + newDescription.toLowerCase().slice(1);
+
   function handleSubmitEditItem(e) {
     e.preventDefault();
 
     const newItem = {
       ...item,
-      description: newDescription,
+      description: capitalizeDescription,
       quantity: newQuantity,
       unit: newUnit,
     };
