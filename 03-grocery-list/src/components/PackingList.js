@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Item from "./Item";
 
@@ -35,6 +35,16 @@ export default function PackingList({
 
   if (sortBy === "unit")
     sortedItems = items.slice().sort((a, b) => a.unit.localeCompare(b.unit));
+
+  useEffect(() => {
+    const receiveItems = window.localStorage.getItem("list");
+
+    if (receiveItems !== null) setItems(JSON.parse(receiveItems));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("list", JSON.stringify(sortedItems));
+  }, [sortedItems]);
 
   return (
     <div className="list">

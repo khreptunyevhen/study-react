@@ -31,7 +31,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [errors, setErrors] = useState({});
   const [showAddNewItem, setShowAddNewItem] = useState(false);
-  const [units, setUnits] = useState(sortedUnits);
+  const [units] = useState(sortedUnits);
 
   function handleAddItem(item) {
     const capitalizeDescription =
