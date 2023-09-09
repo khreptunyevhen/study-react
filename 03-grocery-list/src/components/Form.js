@@ -1,31 +1,11 @@
 import { useState } from "react";
+import CountSelect from "./CountSelect";
+import UnitSelect from "./UnitSelect";
 
-const units = [
-  "bag",
-  "bottle",
-  "box",
-  "cup",
-  "kg",
-  "g",
-  "ml",
-  "l",
-  "bunch",
-  "small",
-  "large",
-  "pack",
-  "jar",
-  "can",
-  "bag",
-  "lbs",
-  "amount",
-];
-
-const sortedUnits = units.sort();
-
-export default function Form({ onAddItems, errors, setErrors }) {
+export default function Form({ onAddItems, errors, setErrors, units }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [unit, setUnit] = useState(sortedUnits.at(0));
+  const [unit, setUnit] = useState(units.at(0));
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -50,7 +30,7 @@ export default function Form({ onAddItems, errors, setErrors }) {
 
     onAddItems(newItem);
 
-    setUnit(sortedUnits.at(0));
+    setUnit(units.at(0));
     setDescription("");
     setQuantity(1);
   }
@@ -65,25 +45,8 @@ export default function Form({ onAddItems, errors, setErrors }) {
         value={description}
         onChange={(event) => setDescription(event.target.value)}
       />
-      <select
-        value={quantity}
-        onChange={(event) => setQuantity(Number(event.target.value))}
-      >
-        {Array.from({ length: 10 }, (_, index) => index + 1).map(
-          (num, index) => (
-            <option key={`num-${index}`} value={num}>
-              {num}
-            </option>
-          )
-        )}
-      </select>
-      <select value={unit} onChange={(e) => setUnit(e.target.value)}>
-        {sortedUnits.map((unit, index) => (
-          <option key={`unit-${index}`} value={unit}>
-            {unit}
-          </option>
-        ))}
-      </select>
+      <CountSelect value={quantity} setValue={setQuantity} />
+      <UnitSelect value={unit} setValue={setUnit} units={units} />
       <button>Add</button>
     </form>
   );

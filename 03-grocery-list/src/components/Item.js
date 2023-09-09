@@ -3,6 +3,7 @@ import EditForm from "./EditForm";
 
 export default function Item({
   item,
+  units,
   items,
   setItems,
   onDeleteItem,
@@ -46,6 +47,7 @@ export default function Item({
       {showEdit && (
         <EditForm
           item={item}
+          units={units}
           items={items}
           setItems={setItems}
           onDeleteItem={onDeleteItem}

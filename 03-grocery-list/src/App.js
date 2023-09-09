@@ -5,10 +5,33 @@ import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 
+const myUnits = [
+  "bag",
+  "bottle",
+  "box",
+  "cup",
+  "kg",
+  "g",
+  "ml",
+  "l",
+  "bunch",
+  "small",
+  "large",
+  "pack",
+  "jar",
+  "can",
+  "bag",
+  "lbs",
+  "amount",
+];
+
 function App() {
+  const sortedUnits = myUnits.sort();
+
   const [items, setItems] = useState([]);
   const [errors, setErrors] = useState({});
   const [showAddNewItem, setShowAddNewItem] = useState(false);
+  const [units, setUnits] = useState(sortedUnits);
 
   function handleAddItem(item) {
     const capitalizeDescription =
@@ -62,12 +85,14 @@ function App() {
       <Logo />
       {showAddNewItem && (
         <Form
+          units={units}
           onAddItems={handleAddItem}
           errors={errors}
           setErrors={setErrors}
         />
       )}
       <PackingList
+        units={units}
         items={items}
         setItems={setItems}
         showAddNewItem={showAddNewItem}
