@@ -76,8 +76,8 @@ function App() {
     if (confirmed) setItems([]);
   }
 
-  function handleShowAddNewItem() {
-    setShowAddNewItem(true);
+  function toggleShowAddNewItem() {
+    setShowAddNewItem((isShow) => !isShow);
   }
 
   return (
@@ -96,7 +96,7 @@ function App() {
         items={items}
         setItems={setItems}
         showAddNewItem={showAddNewItem}
-        onShowAddNewItem={handleShowAddNewItem}
+        onShowAddNewItem={toggleShowAddNewItem}
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
         onClearList={handleClearList}

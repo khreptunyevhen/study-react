@@ -47,9 +47,9 @@ export default function PackingList({
           <option value="unit">Sort by unit</option>
         </select>
         <button onClick={onClearList}>Clear list</button>
-        {!showAddNewItem && (
-          <button onClick={onShowAddNewItem}>New Item</button>
-        )}
+        <button onClick={onShowAddNewItem}>
+          {showAddNewItem ? "Done" : "New Item"}
+        </button>
       </div>
       <ul>
         {sortedItems.map((item, index) => (
