@@ -28,8 +28,12 @@ const EditForm = ({ item, setItems, onDeleteItem, onCloseEdit, units }) => {
   }
 
   return (
-    <div className="overlay">
-      <form className="edit-form" onSubmit={handleSubmitEditItem}>
+    <div onClick={onCloseEdit} className="overlay">
+      <form
+        className="edit-form"
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={handleSubmitEditItem}
+      >
         <div className="edit-info">
           <input
             type="text"
