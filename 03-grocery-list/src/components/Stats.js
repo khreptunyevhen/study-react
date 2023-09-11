@@ -1,4 +1,4 @@
-export default function Stats({ items, showAddNewItem }) {
+export default function Stats({ items, showAddNewItem, windowWidth }) {
   if (!items.length)
     return (
       <footer className="stats">
@@ -10,10 +10,12 @@ export default function Stats({ items, showAddNewItem }) {
   const numPacked = items.filter((item) => item.packed).length;
   const percentage = Math.round((numPacked / numItems) * 100);
 
+  const topPosition = windowWidth <= 640 ? "206px" : "120px";
+
   return (
     <footer
       style={{
-        top: showAddNewItem ? "120px" : "0",
+        top: showAddNewItem ? topPosition : "0",
       }}
       className="stats"
     >

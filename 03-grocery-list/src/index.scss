@@ -4,6 +4,7 @@
 @import "./components/styles/packingList.scss";
 @import "./components/styles/form.scss";
 @import "./components/styles/editForm.scss";
+@import "./components/styles/item.scss";
 @import "./components/styles/stats.scss";
 @import "./components/styles/clearModal.scss";
 
@@ -81,6 +82,10 @@ body::-webkit-scrollbar-thumb {
     width: 450px;
     padding: 40px 0;
     margin: 0 auto;
+
+    @media (max-width: 640px) {
+      width: 270px;
+    }
 
     select {
       padding: 10px;

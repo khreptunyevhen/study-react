@@ -11,6 +11,8 @@ export default function PackingList({
   onToggleItem,
   setIsClearList,
   onShowAddNewItem,
+  windowWidth,
+  setShowAddNewItem,
 }) {
   const [sortBy, setSortBy] = useState("input");
 
@@ -46,10 +48,12 @@ export default function PackingList({
     window.localStorage.setItem("list", JSON.stringify(sortedItems));
   }, [sortedItems]);
 
+  const topPosition = windowWidth <= 640 ? "206px" : "120px";
+
   return (
     <div
       style={{
-        top: showAddNewItem ? "120px" : "0",
+        top: showAddNewItem ? topPosition : "0",
       }}
       className="list"
     >
@@ -61,12 +65,14 @@ export default function PackingList({
           <option value="quantity">Sort by quantity</option>
           <option value="unit">Sort by unit</option>
         </select>
-        <button className="control" onClick={() => setIsClearList(true)}>
-          Clear list
-        </button>
-        <button className="control" onClick={onShowAddNewItem}>
-          {showAddNewItem ? "Done" : "New Item"}
-        </button>
+        <div className="actions-control">
+          <button className="control" onClick={() => setIsClearList(true)}>
+            Clear list
+          </button>
+          <button className="control" onClick={onShowAddNewItem}>
+            {showAddNewItem ? "Done" : "New Item"}
+          </button>
+        </div>
       </div>
       <ul>
         {sortedItems.map((item, index) => (
@@ -78,6 +84,7 @@ export default function PackingList({
             items={items}
             units={units}
             setItems={setItems}
+            setShowAddNewItem={setShowAddNewItem}
           />
         ))}
       </ul>

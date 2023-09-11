@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Logo from "./components/Logo";
 import Form from "./components/Form";
@@ -21,9 +21,8 @@ const myUnits = [
   "pack",
   "jar",
   "can",
-  "bag",
   "lbs",
-  "amount",
+  "am",
 ];
 
 function App() {
@@ -34,6 +33,19 @@ function App() {
   const [showAddNewItem, setShowAddNewItem] = useState(false);
   const [units] = useState(sortedUnits);
   const [isClearList, setIsClearList] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function widthHandler() {
+      let width = window.innerWidth;
+
+      setWindowWidth(width);
+    }
+
+    window.addEventListener("resize", widthHandler);
+
+    return () => window.removeEventListener("resize", widthHandler);
+  }, [windowWidth]);
 
   function handleAddItem(item) {
     const capitalizeDescription =
@@ -48,7 +60,7 @@ function App() {
     ) {
       setErrors((currErrors) => ({
         ...currErrors,
-        error: `${capitalizeDescription} already exist! Please add another one!`,
+        error: `${capitalizeDescription} already exist!`,
       }));
       return;
     } else {
@@ -89,6 +101,7 @@ function App() {
             showAddNewItem={showAddNewItem}
             errors={errors}
             setErrors={setErrors}
+            windowWidth={windowWidth}
           />
           <PackingList
             units={units}
@@ -99,6 +112,8 @@ function App() {
             onDeleteItem={handleDeleteItem}
             onToggleItem={handleToggleItem}
             setIsClearList={setIsClearList}
+            windowWidth={windowWidth}
+            setShowAddNewItem={setShowAddNewItem}
           />
           {isClearList && (
             <ClearModal
@@ -108,7 +123,11 @@ function App() {
           )}
         </main>
       </div>
-      <Stats items={items} showAddNewItem={showAddNewItem} />
+      <Stats
+        items={items}
+        showAddNewItem={showAddNewItem}
+        windowWidth={windowWidth}
+      />
     </div>
   );
 }

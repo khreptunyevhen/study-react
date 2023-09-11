@@ -11,6 +11,7 @@ export default function Item({
   setItems,
   onDeleteItem,
   onToggleItem,
+  setShowAddNewItem,
 }) {
   const [showEdit, setShowEdit] = useState(false);
 
@@ -50,7 +51,13 @@ export default function Item({
         <button className="delete-btn" onClick={() => onDeleteItem(item.id)}>
           <MdDelete />
         </button>
-        <button className="edit-btn" onClick={handleShowEdit}>
+        <button
+          className="edit-btn"
+          onClick={() => {
+            setShowAddNewItem(false);
+            handleShowEdit();
+          }}
+        >
           <AiFillEdit />
         </button>
       </div>

@@ -10,6 +10,7 @@ export default function Form({
   setErrors,
   units,
   showAddNewItem,
+  windowWidth,
 }) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -43,10 +44,13 @@ export default function Form({
     setQuantity(1);
   }
 
+  const topPosition = windowWidth <= 640 ? "-210px" : "-110px";
+
   return (
     <form
       style={{
-        top: showAddNewItem ? "40px" : "-110px",
+        top: showAddNewItem ? "40px" : topPosition,
+        opacity: showAddNewItem ? 1 : 0,
       }}
       className="add-form"
       onSubmit={handleSubmit}
@@ -65,9 +69,11 @@ export default function Form({
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
-        <CountSelect value={quantity} setValue={setQuantity} />
-        <UnitSelect value={unit} setValue={setUnit} units={units} />
-        <button className="control">Add</button>
+        <div className="actions-control">
+          <CountSelect value={quantity} setValue={setQuantity} />
+          <UnitSelect value={unit} setValue={setUnit} units={units} />
+          <button className="control">Add</button>
+        </div>
       </div>
     </form>
   );
