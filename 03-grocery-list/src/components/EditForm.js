@@ -28,27 +28,34 @@ const EditForm = ({ item, setItems, onDeleteItem, onCloseEdit, units }) => {
   }
 
   return (
-    <form onSubmit={handleSubmitEditItem}>
-      <input
-        type="text"
-        defaultValue={item.description}
-        onChange={(e) => setNewDescription(e.target.value)}
-      />
-      <CountSelect value={newQuantity} setValue={setNewQuantity} />
-      <UnitSelect value={newUnit} setValue={setNewUnit} units={units} />
-      <div className="edit-buttons">
-        <button>Save</button>
-        <button onClick={onCloseEdit}>Cancel</button>
-        <button
-          onClick={() => {
-            onCloseEdit();
-            onDeleteItem(item.id);
-          }}
-        >
-          Delete
-        </button>
-      </div>
-    </form>
+    <div className="overlay">
+      <form className="edit-form" onSubmit={handleSubmitEditItem}>
+        <div className="edit-info">
+          <input
+            type="text"
+            defaultValue={item.description}
+            onChange={(e) => setNewDescription(e.target.value)}
+          />
+          <CountSelect value={newQuantity} setValue={setNewQuantity} />
+          <UnitSelect value={newUnit} setValue={setNewUnit} units={units} />
+        </div>
+        <div className="edit-buttons">
+          <button className="control">Save</button>
+          <button className="control" onClick={onCloseEdit}>
+            Cancel
+          </button>
+          <button
+            className="control"
+            onClick={() => {
+              onCloseEdit();
+              onDeleteItem(item.id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

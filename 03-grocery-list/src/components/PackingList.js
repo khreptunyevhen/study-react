@@ -47,7 +47,12 @@ export default function PackingList({
   }, [sortedItems]);
 
   return (
-    <div className="list">
+    <div
+      style={{
+        top: showAddNewItem ? "120px" : "0",
+      }}
+      className="list"
+    >
       <div className="actions">
         <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
           <option value="input">Sort by input order</option>
@@ -56,8 +61,10 @@ export default function PackingList({
           <option value="quantity">Sort by quantity</option>
           <option value="unit">Sort by unit</option>
         </select>
-        <button onClick={onClearList}>Clear list</button>
-        <button onClick={onShowAddNewItem}>
+        <button className="control" onClick={onClearList}>
+          Clear list
+        </button>
+        <button className="control" onClick={onShowAddNewItem}>
           {showAddNewItem ? "Done" : "New Item"}
         </button>
       </div>

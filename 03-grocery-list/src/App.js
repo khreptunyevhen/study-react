@@ -83,25 +83,28 @@ function App() {
   return (
     <div className="app">
       <Logo />
-      {showAddNewItem && (
-        <Form
-          units={units}
-          onAddItems={handleAddItem}
-          errors={errors}
-          setErrors={setErrors}
-        />
-      )}
-      <PackingList
-        units={units}
-        items={items}
-        setItems={setItems}
-        showAddNewItem={showAddNewItem}
-        onShowAddNewItem={toggleShowAddNewItem}
-        onDeleteItem={handleDeleteItem}
-        onToggleItem={handleToggleItem}
-        onClearList={handleClearList}
-      />
-      <Stats items={items} />
+      <div className="container">
+        <main>
+          <Form
+            units={units}
+            onAddItems={handleAddItem}
+            showAddNewItem={showAddNewItem}
+            errors={errors}
+            setErrors={setErrors}
+          />
+          <PackingList
+            units={units}
+            items={items}
+            setItems={setItems}
+            showAddNewItem={showAddNewItem}
+            onShowAddNewItem={toggleShowAddNewItem}
+            onDeleteItem={handleDeleteItem}
+            onToggleItem={handleToggleItem}
+            onClearList={handleClearList}
+          />
+        </main>
+      </div>
+      <Stats items={items} showAddNewItem={showAddNewItem} />
     </div>
   );
 }

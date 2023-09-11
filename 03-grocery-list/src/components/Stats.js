@@ -1,8 +1,8 @@
-export default function Stats({ items }) {
+export default function Stats({ items, showAddNewItem }) {
   if (!items.length)
     return (
       <footer className="stats">
-        <em>Start edding some items to your grocery list 📃!</em>
+        <p>Start edding some products to your grocery list! 📃</p>
       </footer>
     );
 
@@ -11,13 +11,25 @@ export default function Stats({ items }) {
   const percentage = Math.round((numPacked / numItems) * 100);
 
   return (
-    <footer className="stats">
-      <em>
-        {percentage === 100
-          ? "You got everything! Ready to go! 🚗"
-          : `👜 You have ${numItems} items on your list, and you already bought
-            ${numPacked} ${percentage}%`}
-      </em>
+    <footer
+      style={{
+        top: showAddNewItem ? "120px" : "0",
+      }}
+      className="stats"
+    >
+      <div className="container">
+        {percentage === 100 ? (
+          <p>You got everything! Ready to go! 🚗</p>
+        ) : (
+          <p>
+            👜 You have <span>{numItems}</span>{" "}
+            {numItems === 1 ? "product" : "products"} on your list, and you
+            already bought <span>{numPacked}</span>{" "}
+            {numItems === 1 ? "product" : "products"}{" "}
+            <span>({percentage}%)</span>.
+          </p>
+        )}
+      </div>
     </footer>
   );
 }

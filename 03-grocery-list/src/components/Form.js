@@ -2,7 +2,15 @@ import { useState } from "react";
 import CountSelect from "./CountSelect";
 import UnitSelect from "./UnitSelect";
 
-export default function Form({ onAddItems, errors, setErrors, units }) {
+import { CgDanger } from "react-icons/cg";
+
+export default function Form({
+  onAddItems,
+  errors,
+  setErrors,
+  units,
+  showAddNewItem,
+}) {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [unit, setUnit] = useState(units.at(0));
@@ -36,18 +44,31 @@ export default function Form({ onAddItems, errors, setErrors, units }) {
   }
 
   return (
-    <form className="add-form" onSubmit={handleSubmit}>
+    <form
+      style={{
+        top: showAddNewItem ? "40px" : "-110px",
+      }}
+      className="add-form"
+      onSubmit={handleSubmit}
+    >
       <h3>What do you want to buy? 💰</h3>
-      {errors.error && <p>{errors.error}</p>}
-      <input
-        type="text"
-        placeholder="Item..."
-        value={description}
-        onChange={(event) => setDescription(event.target.value)}
-      />
-      <CountSelect value={quantity} setValue={setQuantity} />
-      <UnitSelect value={unit} setValue={setUnit} units={units} />
-      <button>Add</button>
+      <div className="actions">
+        {errors.error && (
+          <p className="errors">
+            <CgDanger />
+            <span>{errors.error}</span>
+          </p>
+        )}
+        <input
+          type="text"
+          placeholder="Product..."
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+        <CountSelect value={quantity} setValue={setQuantity} />
+        <UnitSelect value={unit} setValue={setUnit} units={units} />
+        <button className="control">Add</button>
+      </div>
     </form>
   );
 }

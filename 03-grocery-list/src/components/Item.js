@@ -1,6 +1,9 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
 
+import { MdDelete } from "react-icons/md";
+import { AiFillEdit } from "react-icons/ai";
+
 export default function Item({
   item,
   units,
@@ -24,7 +27,7 @@ export default function Item({
   }
 
   return (
-    <li>
+    <li className={item.packed ? "active" : ""}>
       <input
         type="checkbox"
         value={item.packed}
@@ -36,14 +39,21 @@ export default function Item({
           item.packed
             ? {
                 textDecoration: "line-through",
+                fontStyle: "italic",
               }
             : {}
         }
       >
         {item.quantity} {item.unit} {capitalizeDescription}
       </span>
-      <button onClick={() => onDeleteItem(item.id)}>❌</button>
-      <button onClick={handleShowEdit}>🚫</button>
+      <div className="buttons">
+        <button className="delete-btn" onClick={() => onDeleteItem(item.id)}>
+          <MdDelete />
+        </button>
+        <button className="edit-btn" onClick={handleShowEdit}>
+          <AiFillEdit />
+        </button>
+      </div>
       {showEdit && (
         <EditForm
           item={item}
