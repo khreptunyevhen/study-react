@@ -4,6 +4,7 @@ import Logo from "./components/Logo";
 import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
+import ClearModal from "./components/ClearModal";
 
 const myUnits = [
   "bag",
@@ -32,6 +33,7 @@ function App() {
   const [errors, setErrors] = useState({});
   const [showAddNewItem, setShowAddNewItem] = useState(false);
   const [units] = useState(sortedUnits);
+  const [isClearList, setIsClearList] = useState(false);
 
   function handleAddItem(item) {
     const capitalizeDescription =
@@ -69,11 +71,7 @@ function App() {
   }
 
   function handleClearList() {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete all items?"
-    );
-
-    if (confirmed) setItems([]);
+    if (isClearList) setItems([]);
   }
 
   function toggleShowAddNewItem() {
@@ -100,8 +98,14 @@ function App() {
             onShowAddNewItem={toggleShowAddNewItem}
             onDeleteItem={handleDeleteItem}
             onToggleItem={handleToggleItem}
-            onClearList={handleClearList}
+            setIsClearList={setIsClearList}
           />
+          {isClearList && (
+            <ClearModal
+              onClearList={handleClearList}
+              setIsClearList={setIsClearList}
+            />
+          )}
         </main>
       </div>
       <Stats items={items} showAddNewItem={showAddNewItem} />

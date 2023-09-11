@@ -9,7 +9,7 @@ export default function PackingList({
   showAddNewItem,
   onDeleteItem,
   onToggleItem,
-  onClearList,
+  setIsClearList,
   onShowAddNewItem,
 }) {
   const [sortBy, setSortBy] = useState("input");
@@ -61,7 +61,7 @@ export default function PackingList({
           <option value="quantity">Sort by quantity</option>
           <option value="unit">Sort by unit</option>
         </select>
-        <button className="control" onClick={onClearList}>
+        <button className="control" onClick={() => setIsClearList(true)}>
           Clear list
         </button>
         <button className="control" onClick={onShowAddNewItem}>
