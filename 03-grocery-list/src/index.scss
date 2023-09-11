@@ -53,6 +53,16 @@ body {
   background-color: white;
 }
 
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(153, 50, 204, 0.1);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: darkorchid;
+  border-radius: 5px;
+}
+
 .app {
   min-height: 100%;
   display: grid;
