@@ -1,6 +1,6 @@
 .clear {
   padding: 20px;
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 10px;
 
   @media (max-width: 640px) {

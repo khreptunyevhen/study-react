@@ -10,11 +10,11 @@ ul {
     transition: box-shadow 0.3s ease-in, background-color 0.3s ease-in;
 
     &:hover {
-      box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      box-shadow: var(--shadow-color) 0px 2px 8px 0px;
     }
 
     &.active {
-      background-color: rgba(99, 99, 99, 0.2);
+      background-color: var(--shadow-color);
     }
 
     &:not(:last-child) {
@@ -32,7 +32,7 @@ ul {
       font: inherit;
       width: 1.2em;
       height: 1.2em;
-      border: 0.15em solid darkorchid;
+      border: 0.15em solid var(--primary-color);
       border-radius: 50%;
       display: grid;
       place-content: center;
@@ -45,7 +45,7 @@ ul {
         transform: scale(0);
         transform-origin: bottom left;
 
-        background-color: darkorchid;
+        background-color: var(--primary-color);
         transition: transform 0.12s ease-in-out;
       }
 
@@ -72,7 +72,7 @@ ul {
       }
 
       .delete-btn {
-        color: crimson;
+        color: var(--danger-color);
         transition: transform 0.3s ease-in;
 
         &:hover {
@@ -81,7 +81,7 @@ ul {
       }
 
       .edit-btn {
-        color: goldenrod;
+        color: var(--edit-color);
         transition: transform 0.3s ease-in;
 
         &:hover {

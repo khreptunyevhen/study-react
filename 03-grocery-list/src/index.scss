@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap");
 
+:root {
+  --primary-color: #9932cc;
+  --bg-color: #fff;
+  --shadow-color: rgba(33, 35, 38, 0.1);
+  --danger-color: #dc143c;
+  --edit-color: #daa520;
+
+  --font-family: "Poppins", sans-serif;
+}
+
 @import "./components/styles/logo.scss";
 @import "./components/styles/packingList.scss";
 @import "./components/styles/form.scss";
@@ -20,27 +30,27 @@
 button {
   border: none;
   background-color: transparent;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family);
   cursor: pointer;
 }
 
 button:focus,
 select:focus,
 input:focus {
-  outline: 1px solid darkorchid;
+  outline: 1px solid var(--primary-color);
 }
 
 select,
 input {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-family);
   outline: none;
   transition: box-shadow 0.3s ease-in;
   cursor: pointer;
 }
 
 option:checked {
-  background: darkorchid;
-  color: white;
+  background: var(--primary-color);
+  color: #fff;
 }
 
 html,
@@ -51,8 +61,8 @@ body,
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background-color: white;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
 }
 
 body::-webkit-scrollbar {
@@ -61,7 +71,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: darkorchid;
+  background: var(--primary-color);
   border-radius: 5px;
 }
 
@@ -102,21 +112,21 @@ body::-webkit-scrollbar-thumb {
     button.control {
       padding: 10px;
       text-transform: uppercase;
-      background-color: darkorchid;
+      background-color: var(--primary-color);
       border-radius: 10px;
-      color: white;
+      color: var(--bg-color);
       transition: box-shadow 0.3s ease-in;
 
       &:hover {
-        box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
-          rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        box-shadow: var(--shadow-color) 0px 10px 20px,
+          var(--shadow-color) 0px 6px 6px;
       }
     }
 
     select:hover,
     input:hover {
-      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
-        rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      box-shadow: var(--shadow-color) 0px 10px 20px,
+        var(--shadow-color) 0px 6px 6px;
     }
   }
 }
