@@ -7,7 +7,7 @@ ul {
     justify-content: space-between;
     padding: 15px;
     border-radius: 10px;
-    transition: var(--transition);
+    transition: box-shadow 0.4s ease-in, background-color 0.4s ease-in;
 
     &:hover {
       box-shadow: var(--shadow-color) 0px 2px 8px 0px;

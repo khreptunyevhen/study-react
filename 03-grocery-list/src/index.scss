@@ -1,15 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap");
 
 :root {
-  --primary-color: #9932cc;
-  --bg-color: #fff;
-  --shadow-color: rgba(33, 35, 38, 0.1);
+  --primary-color: #5c148c;
   --danger-color: #dc143c;
   --edit-color: #daa520;
-  --font-color: #000;
 
   --font-family: "Poppins", sans-serif;
   --transition: all 0.4s ease-in;
+}
+
+body[color-theme="light"] {
+  --font-color: #252525;
+  --bg-color: #fff;
+  --shadow-color: rgba(33, 35, 38, 0.1);
+}
+
+body[color-theme="dark"] {
+  --font-color: #fff;
+  --bg-color: #252525;
+  --shadow-color: rgba(255, 255, 255, 0.4);
 }
 
 @import "./components/styles/logo.scss";
@@ -68,6 +77,7 @@ body,
 body {
   font-family: var(--font-family);
   background-color: var(--bg-color);
+  transition: var(--transition);
 }
 
 body::-webkit-scrollbar {

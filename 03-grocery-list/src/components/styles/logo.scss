@@ -4,6 +4,7 @@ header {
   box-shadow: var(--shadow-color) 0px 10px 10px -10px;
   padding: 40px 0;
   background-color: var(--bg-color);
+  transition: var(--transition);
 
   h1 {
     font-size: 2rem;
