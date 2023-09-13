@@ -1,4 +1,5 @@
 import { useGetCssValue } from "./useGetCssValue";
+import FontStyleSwitcher from "./FontStyleSwitcher";
 
 const fonts = [
   { id: "ff3", name: "Poppins", property: "'Poppins', sans-serif" },
@@ -15,13 +16,16 @@ const FontSwitcher = () => {
   }
 
   return (
-    <select value={font} onChange={handleFont}>
-      {fonts.map((font) => (
-        <option key={font.id} value={font.property}>
-          {font.name}
-        </option>
-      ))}
-    </select>
+    <div>
+      <select value={font} onChange={handleFont}>
+        {fonts.map((font) => (
+          <option key={font.id} value={font.property}>
+            {font.name}
+          </option>
+        ))}
+      </select>
+      <FontStyleSwitcher />
+    </div>
   );
 };
 
