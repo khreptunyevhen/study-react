@@ -1,10 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@0;1&family=Mali:ital@0;1&family=Poppins:ital@0;1&family=Raleway:ital@0;1&display=swap");
 
 :root {
   --primary-color: #5c148c;
   --danger-color: #dc143c;
   --edit-color: #daa520;
 
+  --font-style: "italic";
   --font-family: "Poppins", sans-serif;
   --transition: all 0.4s ease-in;
 }
@@ -44,6 +45,7 @@ button {
   border: none;
   background-color: transparent;
   font-family: var(--font-family);
+  font-style: var(--font-style);
   cursor: pointer;
 }
 
@@ -56,6 +58,7 @@ input:focus {
 select,
 input {
   font-family: var(--font-family);
+  font-style: var(--font-style);
   outline: none;
   transition: var(--transition);
   cursor: pointer;
@@ -78,6 +81,7 @@ body {
   font-family: var(--font-family);
   background-color: var(--bg-color);
   transition: var(--transition);
+  font-style: var(--font-style);
   overflow-x: hidden;
 }
 

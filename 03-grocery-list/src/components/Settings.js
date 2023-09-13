@@ -3,6 +3,7 @@ import { AiFillSetting } from "react-icons/ai";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { BiSun } from "react-icons/bi";
 import ColorSwitcher from "./ColorSwitcher";
+import FontSwitcher from "./FontSwitcher";
 
 const Settings = () => {
   const [showPanel, setShowPanel] = useState(false);
@@ -31,6 +32,7 @@ const Settings = () => {
             {theme === "light" ? <MdOutlineDarkMode /> : <BiSun />}
           </button>
           <ColorSwitcher />
+          <FontSwitcher />
         </div>
       )}
     </div>
