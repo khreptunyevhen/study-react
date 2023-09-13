@@ -5,6 +5,8 @@ import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import ClearModal from "./components/ClearModal";
+import { useGetCssValue } from "./components/useGetCssValue";
+import Settings from "./components/Settings";
 
 const myUnits = [
   "bag",
@@ -35,17 +37,7 @@ function App() {
   const [isClearList, setIsClearList] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    function widthHandler() {
-      let width = window.innerWidth;
-
-      setWindowWidth(width);
-    }
-
-    window.addEventListener("resize", widthHandler);
-
-    return () => window.removeEventListener("resize", widthHandler);
-  }, [windowWidth]);
+  const [isItalic, setIsItalic] = useState(false);
 
   function handleAddItem(item) {
     const capitalizeDescription =
@@ -90,9 +82,46 @@ function App() {
     setShowAddNewItem((isShow) => !isShow);
   }
 
+  useEffect(() => {
+    const receiveFont = window.localStorage.getItem("font-family");
+    const receiveColor = window.localStorage.getItem("color");
+
+    if (receiveColor !== null)
+      document.documentElement.style.setProperty(
+        "--primary-color",
+        JSON.parse(receiveColor)
+      );
+
+    if (receiveFont !== null)
+      document.documentElement.style.setProperty(
+        "--font-family",
+        JSON.parse(receiveFont)
+      );
+  }, []);
+
+  useEffect(() => {
+    const receiveFontStyle = window.localStorage.getItem("font-style");
+
+    const style = JSON.parse(receiveFontStyle) ? "italic" : "normal";
+
+    document.documentElement.style.setProperty("--font-style", style);
+  }, [isItalic]);
+
+  useEffect(() => {
+    function widthHandler() {
+      let width = window.innerWidth;
+
+      setWindowWidth(width);
+    }
+
+    window.addEventListener("resize", widthHandler);
+
+    return () => window.removeEventListener("resize", widthHandler);
+  }, [windowWidth]);
+
   return (
     <div className="app">
-      <Logo />
+      <Logo isItalic={isItalic} setIsItalic={setIsItalic} />
       <div className="container">
         <main>
           <Form
@@ -121,6 +150,7 @@ function App() {
               setIsClearList={setIsClearList}
             />
           )}
+          <Settings isItalic={isItalic} setIsItalic={setIsItalic} />
         </main>
       </div>
       <Stats

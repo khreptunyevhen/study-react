@@ -1,16 +1,25 @@
-import { useGetCssValue } from "./useGetCssValue";
+import { useLocalStorage } from "./useLocalStorage";
 
-const FontStyleSwitcher = () => {
-  const [style, setStyle] = useGetCssValue("--font-style");
+const FontStyleSwitcher = ({ isItalic, setIsItalic }) => {
+  useLocalStorage(isItalic, setIsItalic, "font-style");
 
-  function handleToggleFontStyle(e) {
-    const style = e.target.value;
-
-    setStyle(style === "normal" ? "italic" : "normal");
+  function handleToggleFontStyle() {
+    setIsItalic((isCurr) => !isCurr);
   }
 
   return (
-    <input value={style} type="checkbox" onChange={handleToggleFontStyle} />
+    <div className="font-style">
+      <label htmlFor="style">
+        <span>Italic</span>
+        <input
+          id="style"
+          value={isItalic}
+          type="checkbox"
+          onChange={handleToggleFontStyle}
+          checked={isItalic ? true : false}
+        />
+      </label>
+    </div>
   );
 };
 

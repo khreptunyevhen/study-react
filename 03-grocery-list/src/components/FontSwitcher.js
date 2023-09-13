@@ -1,5 +1,6 @@
 import { useGetCssValue } from "./useGetCssValue";
 import FontStyleSwitcher from "./FontStyleSwitcher";
+import { useLocalStorage } from "./useLocalStorage";
 
 const fonts = [
   { id: "ff3", name: "Poppins", property: "'Poppins', sans-serif" },
@@ -8,15 +9,17 @@ const fonts = [
   { id: "ff4", name: "Raleway", property: "'Raleway', sans-serif" },
 ];
 
-const FontSwitcher = () => {
+const FontSwitcher = ({ isItalic, setIsItalic }) => {
   const [font, setFont] = useGetCssValue("--font-family");
+
+  useLocalStorage(font, setFont, "font-family");
 
   function handleFont(e) {
     setFont(e.target.value);
   }
 
   return (
-    <div>
+    <div className="font-switcher">
       <select value={font} onChange={handleFont}>
         {fonts.map((font) => (
           <option key={font.id} value={font.property}>
@@ -24,7 +27,7 @@ const FontSwitcher = () => {
           </option>
         ))}
       </select>
-      <FontStyleSwitcher />
+      <FontStyleSwitcher isItalic={isItalic} setIsItalic={setIsItalic} />
     </div>
   );
 };

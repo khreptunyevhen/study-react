@@ -12,12 +12,14 @@
 
 body[color-theme="light"] {
   --font-color: #252525;
+  --window-color: #d9d9d9;
   --bg-color: #fff;
   --shadow-color: rgba(33, 35, 38, 0.1);
 }
 
 body[color-theme="dark"] {
   --font-color: #fff;
+  --window-color: #424242;
   --bg-color: #252525;
   --shadow-color: rgba(255, 255, 255, 0.4);
 }
@@ -31,6 +33,8 @@ body[color-theme="dark"] {
 @import "./components/styles/clearModal.scss";
 @import "./components/styles/settings.scss";
 @import "./components/styles/colorSwitcher.scss";
+@import "./components/styles/fontSwitcher.scss";
+@import "./components/styles/fontStyleSwitcher.scss";
 
 // Reset styles
 *,
@@ -127,6 +131,33 @@ body::-webkit-scrollbar-thumb {
       padding: 10px;
       border-radius: 10px;
       outline: none;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      background-color: transparent;
+      width: 1em;
+      height: 1em;
+      border: 0.15em solid var(--primary-color);
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+
+      &::before {
+        content: "";
+        width: 0.55em;
+        height: 0.55em;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        transform: scale(0);
+        transform-origin: bottom left;
+
+        background-color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      &:checked::before {
+        transform: scale(1);
+      }
     }
 
     button.control {

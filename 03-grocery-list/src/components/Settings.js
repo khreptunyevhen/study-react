@@ -4,14 +4,21 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { BiSun } from "react-icons/bi";
 import ColorSwitcher from "./ColorSwitcher";
 import FontSwitcher from "./FontSwitcher";
+import { useLocalStorage } from "./useLocalStorage";
 
-const Settings = () => {
+const Settings = ({ isItalic, setIsItalic }) => {
   const [showPanel, setShowPanel] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+    const receiveItems = window.localStorage.getItem("color-theme");
+
+    if (receiveItems !== null) return JSON.parse(receiveItems);
+  });
 
   useEffect(() => {
     document.body.setAttribute("color-theme", theme);
   }, [theme]);
+
+  useLocalStorage(theme, setTheme, "color-theme");
 
   function handleShowPanel() {
     setShowPanel((isShow) => !isShow);
@@ -27,12 +34,17 @@ const Settings = () => {
         <AiFillSetting />
       </button>
       {showPanel && (
-        <div className="panel">
-          <button onClick={toggleThemeColor} className="edit-btn">
-            {theme === "light" ? <MdOutlineDarkMode /> : <BiSun />}
-          </button>
-          <ColorSwitcher />
-          <FontSwitcher />
+        <div
+          onClick={() => setShowPanel(false)}
+          className="overlay overlay--less"
+        >
+          <div onClick={(e) => e.stopPropagation()} className="panel">
+            <button onClick={toggleThemeColor} className="edit-btn">
+              {theme === "light" ? <MdOutlineDarkMode /> : <BiSun />}
+            </button>
+            <ColorSwitcher />
+            <FontSwitcher isItalic={isItalic} setIsItalic={setIsItalic} />
+          </div>
         </div>
       )}
     </div>

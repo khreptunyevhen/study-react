@@ -40,8 +40,10 @@ const EditForm = ({ item, setItems, onDeleteItem, onCloseEdit, units }) => {
             defaultValue={item.description}
             onChange={(e) => setNewDescription(e.target.value)}
           />
-          <CountSelect value={newQuantity} setValue={setNewQuantity} />
-          <UnitSelect value={newUnit} setValue={setNewUnit} units={units} />
+          <div className="selection">
+            <CountSelect value={newQuantity} setValue={setNewQuantity} />
+            <UnitSelect value={newUnit} setValue={setNewUnit} units={units} />
+          </div>
         </div>
         <div className="edit-buttons">
           <button className="control">Save</button>

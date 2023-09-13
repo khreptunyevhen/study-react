@@ -1,16 +1,23 @@
 .settings {
-  position: relative;
+  position: absolute;
+  top: 10px;
+  left: -20px;
   text-align-last: left;
 
   .edit-btn {
+    position: relative;
     outline: none;
     font-size: 1.5rem;
     color: var(--primary-color);
+    z-index: 71;
   }
 
   .panel {
-    position: absolute;
-    outline: 1px solid darkblue;
+    background-color: var(--window-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-color) 0px 10px 20px;
+    transition: var(--transition);
 
     .edit-btn {
       color: var(--font-color);
