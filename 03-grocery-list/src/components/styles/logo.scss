@@ -11,6 +11,12 @@ header {
     text-align: center;
     color: var(--primary-color);
     font-weight: 700;
+    width: max-content;
+    margin: 0 auto;
+
+    button {
+      text-align: left;
+    }
 
     @media (max-width: 640px) {
       font-size: 1.5rem;

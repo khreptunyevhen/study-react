@@ -1,0 +1,21 @@
+.settings {
+  position: relative;
+  text-align-last: left;
+
+  .edit-btn {
+    outline: none;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+  }
+
+  .panel {
+    position: absolute;
+    outline: 1px solid darkblue;
+
+    .edit-btn {
+      color: var(--font-color);
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+  }
+}
