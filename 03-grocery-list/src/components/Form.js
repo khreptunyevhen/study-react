@@ -4,6 +4,9 @@ import UnitSelect from "./UnitSelect";
 
 import { CgDanger } from "react-icons/cg";
 
+const minDescriptionLength = 3;
+const maxDescriptionLength = 15;
+
 export default function Form({
   onAddItems,
   errors,
@@ -22,7 +25,23 @@ export default function Form({
     if (!description) {
       setErrors((currErrors) => ({
         ...currErrors,
-        error: "Item cannot be empty!",
+        error: "Product cannot be empty!",
+      }));
+      return;
+    } else {
+      setErrors({});
+    }
+
+    if (description.length < minDescriptionLength) {
+      setErrors((currErrors) => ({
+        ...currErrors,
+        error: `Has to be at least ${minDescriptionLength} characters!`,
+      }));
+      return;
+    } else if (description.length >= maxDescriptionLength) {
+      setErrors((currErrors) => ({
+        ...currErrors,
+        error: `Has to be less than ${maxDescriptionLength} characters!`,
       }));
       return;
     } else {

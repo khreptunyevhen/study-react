@@ -144,12 +144,11 @@ function App() {
             windowWidth={windowWidth}
             setShowAddNewItem={setShowAddNewItem}
           />
-          {isClearList && (
-            <ClearModal
-              onClearList={handleClearList}
-              setIsClearList={setIsClearList}
-            />
-          )}
+          <ClearModal
+            isClearList={isClearList}
+            onClearList={handleClearList}
+            setIsClearList={setIsClearList}
+          />
           <Settings isItalic={isItalic} setIsItalic={setIsItalic} />
         </main>
       </div>

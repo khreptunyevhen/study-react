@@ -61,16 +61,15 @@ export default function Item({
           <AiFillEdit />
         </button>
       </div>
-      {showEdit && (
-        <EditForm
-          item={item}
-          units={units}
-          items={items}
-          setItems={setItems}
-          onDeleteItem={onDeleteItem}
-          onCloseEdit={handleCloseEdit}
-        />
-      )}
+      <EditForm
+        item={item}
+        units={units}
+        items={items}
+        setItems={setItems}
+        onDeleteItem={onDeleteItem}
+        onCloseEdit={handleCloseEdit}
+        showEdit={showEdit}
+      />
     </li>
   );
 }

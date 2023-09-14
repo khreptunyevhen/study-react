@@ -2,10 +2,22 @@ import { useState } from "react";
 import CountSelect from "./CountSelect";
 import UnitSelect from "./UnitSelect";
 
-const EditForm = ({ item, setItems, onDeleteItem, onCloseEdit, units }) => {
+const EditForm = ({
+  item,
+  setItems,
+  onDeleteItem,
+  onCloseEdit,
+  units,
+  showEdit,
+}) => {
   const [newDescription, setNewDescription] = useState(item.description);
   const [newQuantity, setNewQuantity] = useState(item.quantity);
   const [newUnit, setNewUnit] = useState(item.unit);
+
+  const visibleStyles = {
+    visibility: showEdit ? "visible" : "hidden",
+    transform: showEdit ? "scale(1)" : "scale(0)",
+  };
 
   const capitalizeDescription =
     newDescription.at(0).toUpperCase() + newDescription.toLowerCase().slice(1);
@@ -28,7 +40,7 @@ const EditForm = ({ item, setItems, onDeleteItem, onCloseEdit, units }) => {
   }
 
   return (
-    <div onClick={onCloseEdit} className="overlay">
+    <div onClick={onCloseEdit} className="overlay" style={visibleStyles}>
       <form
         className="edit-form"
         onClick={(e) => e.stopPropagation()}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 import Item from "./Item";
@@ -16,6 +16,8 @@ export default function PackingList({
   setShowAddNewItem,
 }) {
   const [sortBy, setSortBy] = useState("input");
+
+  useLocalStorage(sortBy, setSortBy, "sort-type");
 
   let sortedItems;
 

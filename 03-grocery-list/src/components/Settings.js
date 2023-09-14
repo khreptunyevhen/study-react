@@ -14,6 +14,11 @@ const Settings = ({ isItalic, setIsItalic }) => {
     if (receiveItems !== null) return JSON.parse(receiveItems);
   });
 
+  const visibleStyles = {
+    visibility: showPanel ? "visible" : "hidden",
+    transform: showPanel ? "scale(1)" : "scale(0)",
+  };
+
   useEffect(() => {
     document.body.setAttribute("color-theme", theme);
   }, [theme]);
@@ -33,20 +38,19 @@ const Settings = ({ isItalic, setIsItalic }) => {
       <button onClick={handleShowPanel} className="edit-btn">
         <AiFillSetting />
       </button>
-      {showPanel && (
-        <div
-          onClick={() => setShowPanel(false)}
-          className="overlay overlay--less"
-        >
-          <div onClick={(e) => e.stopPropagation()} className="panel">
-            <button onClick={toggleThemeColor} className="edit-btn">
-              {theme === "light" ? <MdOutlineDarkMode /> : <BiSun />}
-            </button>
-            <ColorSwitcher />
-            <FontSwitcher isItalic={isItalic} setIsItalic={setIsItalic} />
-          </div>
+      <div
+        style={visibleStyles}
+        onClick={() => setShowPanel(false)}
+        className="overlay overlay--less"
+      >
+        <div onClick={(e) => e.stopPropagation()} className="panel">
+          <button onClick={toggleThemeColor} className="edit-btn">
+            {theme === "light" ? <MdOutlineDarkMode /> : <BiSun />}
+          </button>
+          <ColorSwitcher />
+          <FontSwitcher isItalic={isItalic} setIsItalic={setIsItalic} />
         </div>
-      )}
+      </div>
     </div>
   );
 };

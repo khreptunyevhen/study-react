@@ -87,6 +87,12 @@ body {
   transition: var(--transition);
   font-style: var(--font-style);
   overflow-x: hidden;
+
+  h1,
+  span,
+  .settings svg {
+    transition: var(--transition);
+  }
 }
 
 body::-webkit-scrollbar {
