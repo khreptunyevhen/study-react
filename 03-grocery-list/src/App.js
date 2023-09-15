@@ -92,6 +92,9 @@ function App() {
         JSON.parse(receiveColor)
       );
 
+    if (receiveColor === `""`)
+      document.documentElement.style.setProperty("--primary-color", "#5c148c");
+
     if (receiveFont !== null)
       document.documentElement.style.setProperty(
         "--font-family",

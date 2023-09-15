@@ -35,13 +35,13 @@ export default function Form({
     if (description.length < minDescriptionLength) {
       setErrors((currErrors) => ({
         ...currErrors,
-        error: `Has to be at least ${minDescriptionLength} characters!`,
+        error: `Has to be at least ${minDescriptionLength} chars!`,
       }));
       return;
     } else if (description.length >= maxDescriptionLength) {
       setErrors((currErrors) => ({
         ...currErrors,
-        error: `Has to be less than ${maxDescriptionLength} characters!`,
+        error: `Has to be less than ${maxDescriptionLength} chars!`,
       }));
       return;
     } else {

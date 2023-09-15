@@ -11,7 +11,11 @@ const Settings = ({ isItalic, setIsItalic }) => {
   const [theme, setTheme] = useState(() => {
     const receiveItems = window.localStorage.getItem("color-theme");
 
-    if (receiveItems !== null) return JSON.parse(receiveItems);
+    if (receiveItems !== null) {
+      return JSON.parse(receiveItems);
+    } else {
+      return "light";
+    }
   });
 
   const visibleStyles = {

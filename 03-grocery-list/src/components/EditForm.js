@@ -1,6 +1,10 @@
 import { useState } from "react";
 import CountSelect from "./CountSelect";
 import UnitSelect from "./UnitSelect";
+import { CgDanger } from "react-icons/cg";
+
+const minDescriptionLength = 3;
+const maxDescriptionLength = 15;
 
 const EditForm = ({
   item,
@@ -11,6 +15,7 @@ const EditForm = ({
   showEdit,
 }) => {
   const [newDescription, setNewDescription] = useState(item.description);
+  const [error, setError] = useState("");
   const [newQuantity, setNewQuantity] = useState(item.quantity);
   const [newUnit, setNewUnit] = useState(item.unit);
 
@@ -20,10 +25,24 @@ const EditForm = ({
   };
 
   const capitalizeDescription =
-    newDescription.at(0).toUpperCase() + newDescription.toLowerCase().slice(1);
+    newDescription?.at(0)?.toUpperCase() +
+    newDescription?.toLowerCase().slice(1);
 
   function handleSubmitEditItem(e) {
     e.preventDefault();
+
+    if (!newDescription) {
+      setError(`Product cannot be empty!`);
+      return;
+    } else if (newDescription.length < minDescriptionLength) {
+      setError(`Has to be at least ${minDescriptionLength} chars!`);
+      return;
+    } else if (newDescription.length >= maxDescriptionLength) {
+      setError(`Has to be less than ${maxDescriptionLength} chars!`);
+      return;
+    } else {
+      setError("");
+    }
 
     const newItem = {
       ...item,
@@ -47,6 +66,12 @@ const EditForm = ({
         onSubmit={handleSubmitEditItem}
       >
         <div className="edit-info">
+          {error.length > 0 && (
+            <p className="errors">
+              <CgDanger />
+              <span>{error}</span>
+            </p>
+          )}
           <input
             type="text"
             defaultValue={item.description}
@@ -59,11 +84,12 @@ const EditForm = ({
         </div>
         <div className="edit-buttons">
           <button className="control">Save</button>
-          <button className="control" onClick={onCloseEdit}>
+          <button type="button" className="control" onClick={onCloseEdit}>
             Cancel
           </button>
           <button
             className="control"
+            type="button"
             onClick={() => {
               onCloseEdit();
               onDeleteItem(item.id);

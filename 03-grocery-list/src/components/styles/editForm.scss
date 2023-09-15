@@ -23,10 +23,19 @@
     border-radius: 10px;
 
     .edit-info {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 20px;
       margin-bottom: 20px;
+
+      .errors span {
+        margin: 0;
+
+        @media (max-width: 640px) {
+          font-size: 0.9rem;
+        }
+      }
 
       @media (max-width: 640px) {
         flex-direction: column;

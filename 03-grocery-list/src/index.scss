@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital@0;1&family=Mali:ital@0;1&family=Poppins:ital@0;1&family=Raleway:ital@0;1&display=swap");
 
 :root {
-  --primary-color: #5c148c;
+  // --primary-color: #5c148c;
   --danger-color: #dc143c;
   --edit-color: #daa520;
 
@@ -184,6 +184,16 @@ body::-webkit-scrollbar-thumb {
     input:hover {
       box-shadow: var(--shadow-color) 0px 10px 20px,
         var(--shadow-color) 0px 6px 6px;
+    }
+
+    .errors {
+      position: absolute;
+      top: -22px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: crimson;
     }
   }
 }
