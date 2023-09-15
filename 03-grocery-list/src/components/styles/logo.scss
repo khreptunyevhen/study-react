@@ -5,19 +5,26 @@ header {
   background-color: var(--bg-color);
   transition: var(--transition);
 
-  h1 {
-    font-size: 2rem;
-    text-transform: uppercase;
-    text-align: center;
-    color: var(--primary-color);
-    font-weight: 700;
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 
-    button {
-      text-align: left;
-    }
+    h1 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--primary-color);
+      font-weight: 700;
 
-    @media (max-width: 640px) {
-      font-size: 1.5rem;
+      button {
+        text-align: left;
+      }
+
+      @media (max-width: 640px) {
+        font-size: 1.5rem;
+      }
     }
   }
 }

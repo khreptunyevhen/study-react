@@ -2,7 +2,7 @@ export default function Stats({ items, showAddNewItem, windowWidth }) {
   if (!items.length)
     return (
       <footer className="stats">
-        <p>Start edding some products to your grocery list! 📃</p>
+        <p>Start edding some products to your grocery list!</p>
       </footer>
     );
 
@@ -21,10 +21,10 @@ export default function Stats({ items, showAddNewItem, windowWidth }) {
     >
       <div className="container">
         {percentage === 100 ? (
-          <p>You got everything! Ready to go! 🚗</p>
+          <p>You got everything! Ready to go!</p>
         ) : (
           <p>
-            👜 You have <span>{numItems}</span>{" "}
+            You have <span>{numItems}</span>{" "}
             {numItems === 1 ? "product" : "products"} on your list, and you
             already bought <span>{numPacked}</span>{" "}
             {numItems === 1 ? "product" : "products"}{" "}

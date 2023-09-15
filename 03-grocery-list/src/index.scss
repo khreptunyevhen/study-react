@@ -127,6 +127,15 @@ body::-webkit-scrollbar-thumb {
       width: 270px;
     }
 
+    .empty-list {
+      position: relative;
+      bottom: -100%;
+      left: 50%;
+      transform: translate(-50%);
+      z-index: -100;
+      transition: var(--transition);
+    }
+
     select {
       padding: 10px;
       border-radius: 10px;

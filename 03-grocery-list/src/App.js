@@ -5,7 +5,6 @@ import Form from "./components/Form";
 import PackingList from "./components/PackingList";
 import Stats from "./components/Stats";
 import ClearModal from "./components/ClearModal";
-import { useGetCssValue } from "./components/useGetCssValue";
 import Settings from "./components/Settings";
 
 const myUnits = [
@@ -38,6 +37,8 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const [isItalic, setIsItalic] = useState(false);
+
+  const topPosition = windowWidth <= 640 ? "206px" : "120px";
 
   function handleAddItem(item) {
     const capitalizeDescription =
@@ -153,6 +154,18 @@ function App() {
             setIsClearList={setIsClearList}
           />
           <Settings isItalic={isItalic} setIsItalic={setIsItalic} />
+          {items.length === 0 && (
+            <img
+              className="empty-list"
+              width={180}
+              height={180}
+              src={"./basket.svg"}
+              alt="Empty list"
+              style={{
+                top: showAddNewItem ? topPosition : "0",
+              }}
+            />
+          )}
         </main>
       </div>
       <Stats

@@ -54,6 +54,7 @@ export default function Form({
       unit,
       packed: false,
       id: Date.now(),
+      img: "./shopping-bag.svg",
     };
 
     onAddItems(newItem);
@@ -74,7 +75,7 @@ export default function Form({
       className="add-form"
       onSubmit={handleSubmit}
     >
-      <h3>What do you want to buy? 💰</h3>
+      <h3>What do you want to buy?</h3>
       <div className="actions">
         {errors.error && (
           <p className="errors">
