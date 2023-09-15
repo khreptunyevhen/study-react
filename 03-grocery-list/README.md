@@ -1,4 +1,4 @@
-# Travel list - the ToDo React project
+# Grocery list - the ToDo React project
 
 Form: Interactive Components and Lifting up state
 [Project link]() - coming soon
