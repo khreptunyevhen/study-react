@@ -13,18 +13,6 @@
       "id": 73930385
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443197
-    },
-    {
       "cityName": "Nogueras",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -35,6 +23,18 @@
         "lng": "-1.0873317387837702"
       },
       "id": 98443200
+    },
+    {
+      "cityName": "Olmeda de Cobeta",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-10-07T15:47:15.327Z",
+      "notes": "",
+      "position": {
+        "lat": "40.837085814551",
+        "lng": "-2.2278473708399975"
+      },
+      "id": 98443201
     }
   ]
 }
