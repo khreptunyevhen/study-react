@@ -6,9 +6,7 @@ function CartItem({ item }) {
       <p>
         {quantity}&times; {name}
       </p>
-      <div>
-        <p>{formatCurrency(totalPrice)}</p>
-      </div>
+      <div>{/* <p>{formatCurrency(totalPrice)}</p> */}</div>
     </li>
   );
 }

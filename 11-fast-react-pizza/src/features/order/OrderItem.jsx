@@ -7,7 +7,7 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
         <p>
           <span>{quantity}&times;</span> {name}
         </p>
-        <p>{formatCurrency(totalPrice)}</p>
+        {/* <p>{formatCurrency(totalPrice)}</p> */}
       </div>
     </li>
   );
